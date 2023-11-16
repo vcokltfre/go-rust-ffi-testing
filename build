@@ -1,0 +1,15 @@
+#!/bin/bash
+
+rm -rf lib
+rm -rf rustffi/target
+
+mkdir lib
+
+cd rustffi
+cargo build --release
+cd ..
+
+cp rustffi/target/release/librustffi.a lib/librustffi.a
+cp rustffi/librustffi.h lib/librustffi.h
+
+go build -o main main.go
